@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InternPortal - Student Internship Placement</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #222;
+            line-height: 1.6;
+        }
+        /* HEADER */
+        header {
+            background: #171c24;
+            color: white;
+            padding: 15px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 22px;
+            font-size: 14px;
+        }
+        nav a:hover {
+            color: #9c4dcc;
+        }
+        /* HERO */
+        .hero {
+            min-height: 520px;
+            display: flex;
+            align-items: center;
+            padding: 60px 7%;
+            background: linear-gradient(120deg, #5427a5, #c62f88);
+            color: white;
+        }
+        .hero-content {
+            width: 55%;
+        }
+        .hero h1 {
+            font-size: 48px;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .hero-buttons a {
+            display: inline-block;
+            padding: 13px 25px;
+            margin-right: 10px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .btn-white {
+            background: white;
+            color: #5427a5;
+        }
+        .btn-outline {
+            border: 2px solid white;
+            color: white;
+        }
+        .hero-image {
+            width: 40%;
+            text-align: center;
+        }
+        .hero-image img {
+            width: 90%;
+            max-width: 450px;
+            border-radius: 15px;
+        }
+        /* COMMON */
+        .section {
+            padding: 65px 7%;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        /* CATEGORIES */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .category {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,.08);
+        }
+        .category .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        .category h3 {
+            margin-bottom: 8px;
+        }
+        .category p {
+            color: #666;
+            font-size: 14px;
+        }
+        /* FEATURED COMPANIES */
+        .companies {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+        .company-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.08);
+        }
+        .company-card img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .company-card h3 {
+            margin-bottom: 7px;
+        }
+        .company-card p {
+            color: #666;
+            font-size: 14px;
+        }
+        .rating {
+            color: #f39c12;
+            margin-top: 10px;
+        }
+        /* STATS */
+        .stats {
+            background: #202630;
+            color: white;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+            padding: 50px 7%;
+        }
+        .stat h2 {
+            font-size: 38px;
+        }
+        .stat p {
+            color: #ccc;
+        }
+        /* WHY US */
+        .why {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        .why-card {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,.08);
+        }
+        /* TESTIMONIALS */
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .review {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.08);
+        }
+        .review p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        /* CTA */
+        .cta {
+            margin: 60px 7%;
+            padding: 55px;
+            border-radius: 15px;
+            background: linear-gradient(120deg, #5427a5, #c62f88);
+            color: white;
+            text-align: center;
+        }
+        .cta h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+        .cta a {
+            display: inline-block;
+            margin-top: 20px;
+            background: white;
+            color: #5427a5;
+            padding: 12px 25px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        /* FOOTER */
+        footer {
+            background: #171c24;
+            color: #ccc;
+            padding: 40px 7%;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+        }
+        footer h3 {
+            color: white;
+            margin-bottom: 12px;
+        }
+        footer a {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 7px;
+        }
+        .copyright {
+            border-top: 1px solid #444;
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 13px;
+        }
+        @media(max-width: 800px) {
+            nav {
+                display: none;
+            }
+            .hero-content,
+            .hero-image {
+                width: 100%;
+            }
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero h1 {
+                font-size: 35px;
+            }
+            .categories,
+            .companies,
+            .why,
+            .reviews,
+            .stats,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">InternPortal</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="register.html">Internships</a>
+        <a href="admin.html">Admin</a>
+        <a href="companies.html">Companies</a>      
+          <a href="about.html">About / Contact</a>
+    </nav>
+</header>
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>
+            Build Your Career With Real Internship Experience
+        </h1>
+        <p>
+            Discover internships from trusted companies,
+            develop practical skills and take your first
+            step towards a successful career.
+        </p>
+        <div class="hero-buttons">
+            <a href="register.html" class="btn-white">
+                Find My Internship
+            </a>
+            <a href="companies.html" class="btn-outline">
+                Explore Companies
+            </a>
+        </div>
+    </div>
+    <div class="hero-image">
+        <!-- ADD YOUR IMAGE LINK HERE -->
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS78pxqGsiCXYVQP-uZeg0v7YqqHE8vZ4F8tUkbPlkYaw&s=10"
+             alt="Students Internship">
+    </div>
+</section>
+<!-- COURSE / CAREER FIELDS -->
+<section class="section">
+    <h2 class="section-title">
+        Find Internships For Your Course
+    </h2>
+    <p class="section-subtitle">
+        Choose your study area and discover suitable career opportunities.
+    </p>
+    <div class="categories">
+        <div class="category">
+            <div class="icon">💻</div>
+            <h3>IT & Computer Science</h3>
+            <p>
+                Web Development, Python, Java, Software Testing,
+                Data Analytics and Cyber Security.
+            </p>
+        </div>
+        <div class="category">
+            <div class="icon">📊</div>
+            <h3>BBA & Business</h3>
+            <p>
+                Marketing, HR, Finance, Business Development
+                and Management internships.
+            </p>
+        </div>
+        <div class="category">
+            <div class="icon">📈</div>
+            <h3>Commerce</h3>
+            <p>
+                Accounting, Banking, Taxation, Finance
+                and Business Operations.
+            </p>
+        </div>
+        <div class="category">
+            <div class="icon">🎨</div>
+            <h3>Design & Media</h3>
+            <p>
+                UI/UX, Graphic Design, Content Creation,
+                Digital Marketing and Media.
+            </p>
+        </div>
+    </div>
+</section>
+<!-- FEATURED COMPANIES -->
+<section class="section">
+    <h2 class="section-title">
+        Featured Companies
+    </h2>
+    <p class="section-subtitle">
+        Explore companies offering internship opportunities.
+    </p>
+    <div class="companies">
+        <div class="company-card">
+            <!-- ADD COMPANY IMAGE -->
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPPSEW_4_ONn-KNCtaE48HiMqi3XVsEjMyjyqs9bBE0w&s=10"width="100" height="200"
+                 alt="TCS">
+            <h3>Tata Consultancy Services</h3>
+            <p>
+                IT, Software Development, Data Analytics
+                and Technology internships.
+            </p>
+            <div class="rating">
+                ★★★★★ 4.8/5
+            </div>
+        </div>
+        <div class="company-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqKxVxzPkZL1qVaqQSoEhM6kz_r2z1vH7V99cIID3BNg&s=10"width="100" height="200"               
+              alt="Infosys">
+            <h3>Infosys</h3>
+            <p>
+                Software Development, Testing,
+                Cloud and Business internships.
+            </p>
+            <div class="rating">
+                ★★★★★ 4.7/5
+            </div>
+        </div>
+        <div class="company-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8DGtQQq5nyXzo8jOn8uMSCOTGjhUZPD38pOcJZL6QAA&s=10"width="100" height="200"
+                 alt="Wipro">
+            <h3>Wipro</h3>
+            <p>
+                IT Services, Digital Business,
+                HR and Marketing opportunities.
+            </p>
+            <div class="rating">
+                ★★★★★ 4.6/5
+            </div>
+        </div>
+    </div>
+</section>
+<!-- STATS -->
+<section class="stats">
+    <div class="stat">
+        <h2>1250+</h2>
+        <p>Students Registered</p>
+    </div>
+    <div class="stat">
+        <h2>850+</h2>
+        <p>Internships Completed</p>
+    </div>
+    <div class="stat">
+        <h2>75+</h2>
+        <p>Partner Companies</p>
+    </div>
+    <div class="stat">
+        <h2>92%</h2>
+        <p>Student Satisfaction</p>
+    </div>
+</section>
+<!-- WHY -->
+<section class="section">
+    <h2 class="section-title">
+        Why Choose InternPortal?
+    </h2>
+    <div class="why">
+        <div class="why-card">
+            <h3>🎯 Course Based Matching</h3>
+            <p>
+                Find internships related to your course
+                and career goals.
+            </p>
+        </div>
+        <div class="why-card">
+            <h3>🏢 Trusted Companies</h3>
+            <p>
+                Explore opportunities from companies
+                offering practical experience.
+            </p>
+        </div>
+        <div class="why-card">
+            <h3>📜 Career Growth</h3>
+            <p>
+                Gain experience, certificates and
+                industry-ready skills.
+            </p>
+        </div>
+    </div>
+</section>
+<!-- REVIEWS -->
+<section class="section">
+    <h2 class="section-title">
+        Student Success Stories
+    </h2>
+    <div class="reviews">
+        <div class="review">
+            <p>
+                "The platform helped me find a Web Development
+                internship that matched my IT course."
+            </p>
+            <strong>Rahul — BSc IT</strong>
+            <div class="rating">★★★★★</div>
+        </div>
+        <div class="review">
+            <p>
+                "I got practical experience in digital marketing
+                and improved my communication skills."
+            </p>
+            <strong>Priya — BBA</strong>
+            <div class="rating">★★★★★</div>
+        </div>
+        <div class="review">
+            <p>
+                "The company information made it easy to
+                compare different internship opportunities."
+            </p>
+            <strong>Neha — BCom</strong>
+            <div class="rating">★★★★★</div>
+        </div>
+    </div>
+</section>
+<!-- CTA -->
+<section class="cta">
+    <h2>Ready to Start Your Internship?</h2>
+    <p>
+        Create your student profile and explore opportunities
+        that match your skills.
+    </p>
+    <a href="register.html">
+        Register Now
+    </a>
+</section>
+<!-- FOOTER -->
+<footer>
+    <div class="footer-grid">
+        <div>
+            <h3>InternPortal</h3>
+            <p>
+                Student Internship Placement Portal
+                connecting students with career opportunities.
+            </p>
+        </div>
+        <div>
+            <h3>Students</h3>
+            <a href="register.html">Register</a>
+            <a href="companies.html">Companies</a>
+            <a href="index.html">Internships</a>
+        </div>
+        <div>
+            <h3>Portal</h3>
+            <a href="about.html">About Us</a>
+            <a href="about.html#contact">Contact</a>
+            <a href="admin.html">Admin</a>
+        </div>
+        <div>
+            <h3>Contact</h3>
+            <p>Email: placement@internportal.edu</p>
+            <p>Phone: +91 98765 43210</p>
+            <p>Surat, Gujarat</p>
+        </div>
+    </div>
+    <div class="copyright">
+        © 2026 InternPortal - Student Internship Placement Portal
+    </div>
+</footer>
+</body>
+</html>

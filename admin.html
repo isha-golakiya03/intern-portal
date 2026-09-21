@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel - InternPortal</title>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f5f8;
+    color: #222;
+}
+header {
+    background: #171c24;
+    padding: 15px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 14px;
+}
+.hero {
+    background: #252b32;
+    color: white;
+    text-align: center;
+    padding: 45px;
+}
+.hero h1 {
+    font-size: 38px;
+}
+.container {
+    width: 94%;
+    max-width: 1250px;
+    margin: 30px auto;
+}
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.08);
+    margin-bottom: 25px;
+}
+.card h2 {
+    color: #5427a5;
+    margin-bottom: 20px;
+}
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    margin-top: 20px;
+    background: #198754;
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background: #146c43;
+}
+.message {
+    margin-top: 15px;
+    font-weight: bold;
+}
+.table-wrapper {
+    overflow-x: auto;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 1100px;
+}
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    font-size: 13px;
+}
+th {
+    background: #5427a5;
+    color: white;
+}
+.delete-btn {
+    background: #dc3545;
+    margin: 0;
+}
+.delete-btn:hover {
+    background: #b02a37;
+}
+footer {
+    background: #171c24;
+    color: #ccc;
+    text-align: center;
+    padding: 30px;
+    margin-top: 50px;
+}
+@media(max-width:800px) {
+    nav {
+        display: none;
+    }
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">InternPortal</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="register.html">Internships</a>
+<a href="admin.html">Admin</a>
+<a href="companies.html">Companies</a>
+<a href="about.html">About / Contact</a>
+</nav>
+</header>
+<section class="hero">
+<h1>Admin Panel</h1>
+<p>Add, update or remove internship listings.</p>
+</section>
+<div class="container">
+<!-- ADD -->
+<div class="card">
+<h2>Add New Internship</h2>
+<form id="adminForm">
+<div class="form-grid">
+<div>
+<label>Student Name</label>
+<input type="text" id="student_name" required>
+</div>
+<div>
+<label>Email</label>
+<input type="email" id="email" required>
+</div>
+<div>
+<label>Phone</label>
+<input type="text" id="phone" maxlength="10" required>
+</div>
+<div>
+<label>Company Name</label>
+<input type="text" id="company_name" required>
+</div>
+<div>
+<label>Internship Role</label>
+<input type="text" id="internship_role" required>
+</div>
+<div>
+<label>Start Date</label>
+<input type="date" id="start_date" required>
+</div>
+<div>
+<label>Duration (Months)</label>
+<input type="number" id="duration" min="1" required>
+</div>
+<div>
+<label>Stipend (₹/month)</label>
+<input type="number" id="stipend" min="0" required>
+</div>
+<div>
+<label>Status</label>
+<select id="status" required>
+<option value="">Select Status</option>
+<option>Applied</option>
+<option>Selected</option>
+<option>Rejected</option>
+<option>Completed</option>
+</select>
+</div>
+</div>
+<button type="submit">
+Add Internship
+</button>
+<div class="message" id="message"></div>
+</form>
+</div>
+<!-- RECORDS -->
+<div class="card">
+<h2>Existing Internships</h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Student</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Company</th>
+<th>Role</th>
+<th>Start Date</th>
+<th>Duration</th>
+<th>Stipend</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="records">
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<footer>
+© 2026 InternPortal - Student Internship Placement Portal
+</footer>
+<script>
+const API = "http://localhost/internship_portal/internships.php";
+/* LOAD */
+async function loadRecords() {
+    try {
+        const response = await fetch(API);
+        const result = await response.json();
+        const records = document.getElementById("records");
+        records.innerHTML = "";
+        if (!result.data || result.data.length === 0) {
+            records.innerHTML =
+                "<tr><td colspan='11'>No internships available.</td></tr>";
+            return;
+        }
+        result.data.forEach(function(item) {
+            records.innerHTML += `
+            <tr>
+                <td>${item.id}</td>
+                <td>${item.student_name}</td>
+                <td>${item.email}</td>
+                <td>${item.phone}</td>
+                <td>${item.company_name}</td>
+                <td>${item.internship_role}</td>
+                <td>${item.start_date}</td>
+                <td>${item.duration} Months</td>
+                <td>₹${item.stipend}</td>
+                <td>${item.status}</td>
+                <td>
+                    <button
+                        class="delete-btn"
+                        onclick="deleteRecord(${item.id})">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+            `;
+        });
+    }
+    catch(error) {
+        console.log(error);
+    }
+}
+/* ADD */
+document.getElementById("adminForm")
+.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const data = {
+        student_name:
+        document.getElementById("student_name").value,
+        email:
+        document.getElementById("email").value,
+        phone:
+        document.getElementById("phone").value,
+        company_name:
+        document.getElementById("company_name").value,
+        internship_role:
+        document.getElementById("internship_role").value,
+        start_date:
+        document.getElementById("start_date").value,
+        duration:
+        parseInt(document.getElementById("duration").value),
+        stipend:
+        parseInt(document.getElementById("stipend").value),
+        status:
+        document.getElementById("status").value
+    };
+    try {
+        const response = await fetch(API, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+        const result = await response.json();
+        document.getElementById("message")
+        .innerText = result.message;
+        if(result.success) {
+            document.getElementById("adminForm").reset();
+            loadRecords();
+        }
+    }
+    catch(error) {
+        document.getElementById("message")
+        .innerText = "Unable to connect to API.";
+    }
+});
+/* DELETE */
+async function deleteRecord(id) {
+    if(!confirm("Are you sure you want to delete this record?")) {
+        return;
+    }
+    try {
+        const response = await fetch(
+            API + "?id=" + id,
+            {
+                method: "DELETE"
+            }
+        );
+        const result = await response.json();
+        alert(result.message);
+        loadRecords();
+    }
+    catch(error) {
+        alert("Delete failed.");
+    }
+}
+loadRecords();
+</script>
+</body>
+</html>

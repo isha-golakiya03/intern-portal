@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Companies - InternPortal</title>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
+    color: #222;
+}
+header {
+    background: #171c24;
+    padding: 15px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 14px;
+}
+.hero {
+    background: linear-gradient(120deg, #5427a5, #c62f88);
+    color: white;
+    text-align: center;
+    padding: 60px 7%;
+}
+.hero h1 {
+    font-size: 40px;
+}
+.container {
+    width: 90%;
+    max-width: 1150px;
+    margin: 45px auto;
+}
+.company {
+    background: white;
+    margin-bottom: 30px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.08);
+}
+.company-top {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 35px;
+    align-items: center;
+}
+.company-top img {
+    width: 130px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: white;
+    padding: 10px;
+    border: 1px solid #eee;
+}
+.company h2 {
+    color: #5427a5;
+    margin-bottom: 8px;
+}
+.rating {
+    color: #f39c12;
+    margin: 8px 0;
+}
+.company-info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
+.info {
+    background: #f5f1fa;
+    padding: 18px;
+    border-radius: 8px;
+    text-align: center;
+}
+.info strong {
+    display: block;
+    font-size: 22px;
+    color: #5427a5;
+}
+.jobs {
+    margin-top: 25px;
+}
+.jobs h3 {
+    margin-bottom: 12px;
+}
+.job {
+    display: inline-block;
+    background: #eee;
+    padding: 9px 14px;
+    margin: 5px;
+    border-radius: 20px;
+}
+.review {
+    background: #fafafa;
+    padding: 18px;
+    margin-top: 15px;
+    border-left: 4px solid #5427a5;
+}
+footer {
+    background: #171c24;
+    color: #ccc;
+    text-align: center;
+    padding: 35px;
+    margin-top: 50px;
+}
+@media(max-width:700px) {
+    nav {
+        display: none;
+    }
+    .company-top {
+        grid-template-columns: 1fr;
+    }
+    .company-top img {
+        width: 100%;
+    }
+    .company-info {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">InternPortal</div>
+<nav>
+<a href="index.html">Home</a>
+<a href="register.html">Internships</a>
+<a href="admin.html">Admin</a>
+<a href="companies.html">Companies</a>
+<a href="about.html">About / Contact</a>
+</nav>
+</header>
+<section class="hero">
+<h1>Explore Partner Companies</h1>
+<p>
+Compare companies, internship opportunities and student experiences.
+</p>
+</section>
+<div class="container">
+<!-- TCS -->
+<div class="company">
+<div class="company-top">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmiSzqyonzgPzEuRpUSb58addiOqfo9vSpmomMHtWMvQ&s=10"
+alt="TCS">
+<div>
+<h2>Tata Consultancy Services</h2>
+<p>
+Global IT and consulting company offering
+technology and business-related internship opportunities.
+</p>
+<div class="rating">
+★★★★★ 4.8 / 5
+</div>
+<p><strong>Recommended for:</strong> IT, BSc IT, BCA, Computer Engineering</p>
+</div>
+</div>
+<div class="company-info">
+<div class="info">
+<strong>245+</strong>
+Students Interned
+</div>
+<div class="info">
+<strong>210+</strong>
+Certificates
+</div>
+<div class="info">
+<strong>35+</strong>
+Job Offers
+</div>
+<div class="info">
+<strong>94%</strong>
+Recommended
+</div>
+</div>
+<div class="jobs">
+<h3>Highly Recommended Internship Roles</h3>
+<span class="job">Web Developer</span>
+<span class="job">Python Developer</span>
+<span class="job">Data Analyst</span>
+<span class="job">Software Tester</span>
+</div>
+<div class="review">
+<strong>Student Review ⭐⭐⭐⭐⭐</strong>
+<p>
+"Good learning environment and useful practical exposure.
+The internship helped me improve my technical skills."
+</p>
+</div>
+</div>
+<!-- INFOSYS -->
+<div class="company">
+<div class="company-top">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ3GIZjKGKkksJy3Y-lb5namjs1wDgLhDXv0mHUj238Q&s=10"
+alt="Infosys">
+<div>
+<h2>Infosys</h2>
+<p>
+Technology and consulting company with opportunities
+in software, cloud, analytics and business functions.
+</p>
+<div class="rating">
+★★★★★ 4.7 / 5
+</div>
+<p><strong>Recommended for:</strong> IT, BCA, BSc IT, MBA</p>
+</div>
+</div>
+<div class="company-info">
+<div class="info">
+<strong>190+</strong>
+Students Interned
+</div>
+<div class="info">
+<strong>165+</strong>
+Certificates
+</div>
+<div class="info">
+<strong>28+</strong>
+Job Offers
+</div>
+<div class="info">
+<strong>91%</strong>
+Recommended
+</div>
+</div>
+<div class="jobs">
+<h3>Highly Recommended Internship Roles</h3>
+<span class="job">Java Developer</span>
+<span class="job">Cloud Intern</span>
+<span class="job">Business Analyst</span>
+<span class="job">UI Developer</span>
+</div>
+<div class="review">
+<strong>Student Review ⭐⭐⭐⭐⭐</strong>
+<p>
+"The company gave me a good opportunity to understand
+professional software development."
+</p>
+</div>
+</div>
+<!-- WIPRO -->
+<div class="company">
+<div class="company-top">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsh2JLmhjcgZYBjqFsTHVerNsbZF7FuF4tIMhI3fLK6w&s"
+alt="Wipro">
+<div>
+<h2>Wipro</h2>
+<p>
+Technology services and business solutions company
+with roles across IT, digital and business operations.
+</p>
+<div class="rating">
+★★★★★ 4.6 / 5
+</div>
+<p><strong>Recommended for:</strong> IT, BBA, BCA, BCom</p>
+</div>
+</div>
+<div class="company-info">
+<div class="info">
+<strong>175+</strong>
+Students Interned
+</div>
+<div class="info">
+<strong>150+</strong>
+Certificates
+</div>
+<div class="info">
+<strong>24+</strong>
+Job Offers
+</div>
+<div class="info">
+<strong>89%</strong>
+Recommended
+</div>
+</div>
+<div class="jobs">
+<h3>Highly Recommended Internship Roles</h3>
+<span class="job">Software Developer</span>
+<span class="job">HR Intern</span>
+<span class="job">Digital Marketing</span>
+<span class="job">Business Development</span>
+</div>
+<div class="review">
+<strong>Student Review ⭐⭐⭐⭐</strong>
+<p>
+"Helpful experience with exposure to professional
+work culture and communication."
+</p>
+</div>
+</div>
+</div>
+<footer>
+© 2026 InternPortal - Student Internship Placement Portal
+</footer>
+</body>
+</html>
